@@ -1,0 +1,39 @@
+backend:
+  driver: "FLATFILE" # MONGO, REDIS, MYSQL, FLATFILE
+  sqlite:
+    fileName: "storage.db"
+  mysql:
+    host: "localhost"
+    port: 3306
+    username: "root"
+    password: "password"
+    database: "veracitymc"
+  redis:
+    host: "localhost"
+    port: 6379
+    pass: "" # Leave empty for no authentication
+  mongo:
+    host: "localhost"
+    port: 27017
+    database: "veracitymc"
+    auth:
+      enable: false
+      username: "root"
+      password: "password"
+      authDb: "admin"
+
+activities:
+  kills: # Actiivty that generates coins
+    pvp:
+      times: 10 # Number of PvP Kills to be given Coins
+      coins: 5
+    pve:
+      times: 25
+      coins: 5
+  mining:
+    times: 50
+    coins: 5
+  online:
+    time: 60 # In Minutes
+    coins: 1
+

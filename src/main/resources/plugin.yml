@@ -1,0 +1,6 @@
+name: Coins
+version: ${project.version}
+main: com.veracitymc.coins.Coins
+api-version: 1.16
+authors: [ flash1110 ]
+description: VeracityMC Coins Plugin
