@@ -2,6 +2,7 @@ package com.veracitymc.coins.commands;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
+import com.veracitymc.coins.Coins;
 import com.veracitymc.coins.game.player.VeracityProfile;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -15,7 +16,7 @@ public class CoinsCommand extends BaseCommand {
     @CatchUnknown
     public void onDefault(Player player) {
         VeracityProfile profile = VeracityProfile.getByPlayer(player);
-        player.sendMessage(ChatColor.YELLOW + "Coins: " + ChatColor.GREEN + profile.getCoins());
+        player.sendMessage(Coins.getInstance().getItemFile().getCOINS_MESSAGE().replace("%AMOUNT%", String.valueOf(profile.getCoins())));
     }
 
     @Syntax("<player>")
@@ -25,12 +26,12 @@ public class CoinsCommand extends BaseCommand {
             return;
         }
 
-        sender.sendMessage(ChatColor.YELLOW + "Coins: " + ChatColor.GREEN + profile.getCoins());
+        sender.sendMessage(Coins.getInstance().getItemFile().getCOINS_MESSAGE_OTHER().replace("%PLAYER%", profile.getName()).replace("%AMOUNT%", String.valueOf(profile.getCoins())));
     }
 
     @Subcommand("shop")
     public void onShop(Player player) {
-
+        Coins.getInstance().getCoinsGUI().openMainInventory(player);
     }
 
     @Syntax("<player> <amount>")

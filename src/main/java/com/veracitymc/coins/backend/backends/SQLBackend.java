@@ -18,7 +18,7 @@ public class SQLBackend extends VeracityBackend implements IBackend {
 
     @Getter private static Connection connection;
 
-    private static final String INSERT = "INSERT INTO Profiles VALUES(?,?,?,?,?,?) ON DUPLICATE KEY UPDATE uuid=?";
+    private static final String INSERT = "INSERT INTO Profiles VALUES(?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE uuid=?";
     private static final String DELETE = "DELETE FROM Profiles WHERE uuid=?";
     private static final String CHECK = "SELECT * FROM Profiles WHERE uuid=?";
 
@@ -47,6 +47,7 @@ public class SQLBackend extends VeracityBackend implements IBackend {
                 if (!exists) {
                     String query = "CREATE TABLE Profiles ("
                             + "uuid VARCHAR(36),"
+                            + "name VARCHAR(16),"
                             + "coins INT,"
                             + "mined INT,"
                             + "pvp INT,"
@@ -100,12 +101,13 @@ public class SQLBackend extends VeracityBackend implements IBackend {
 
                 PreparedStatement insert = connection.prepareStatement(INSERT);
                 insert.setString(1, profile.getUuid().toString());
-                insert.setInt(2, profile.getCoins());
-                insert.setInt(3, profile.getMined());
-                insert.setInt(4, profile.getPvpkills());
-                insert.setInt(5, profile.getPvekills());
-                insert.setInt(6, profile.getOnlinetime());
-                insert.setString(7, profile.getUuid().toString());
+                insert.setString(2, profile.getName());
+                insert.setInt(3, profile.getCoins());
+                insert.setInt(4, profile.getMined());
+                insert.setInt(5, profile.getPvpkills());
+                insert.setInt(6, profile.getPvekills());
+                insert.setInt(7, profile.getOnlinetime());
+                insert.setString(8, profile.getUuid().toString());
 
                 insert.executeUpdate();
 
@@ -152,12 +154,13 @@ public class SQLBackend extends VeracityBackend implements IBackend {
                 PreparedStatement insert = connection.prepareStatement(INSERT);
 
                 insert.setString(1, profile.getUuid().toString());
-                insert.setInt(2, profile.getCoins());
-                insert.setInt(3, profile.getMined());
-                insert.setInt(4, profile.getPvpkills());
-                insert.setInt(5, profile.getPvekills());
-                insert.setInt(6, profile.getOnlinetime());
-                insert.setString(7, profile.getUuid().toString());
+                insert.setString(2, profile.getName());
+                insert.setInt(3, profile.getCoins());
+                insert.setInt(4, profile.getMined());
+                insert.setInt(5, profile.getPvpkills());
+                insert.setInt(6, profile.getPvekills());
+                insert.setInt(7, profile.getOnlinetime());
+                insert.setString(8, profile.getUuid().toString());
 
                 insert.executeUpdate();
             } catch(Exception ex) {
@@ -173,12 +176,13 @@ public class SQLBackend extends VeracityBackend implements IBackend {
             PreparedStatement insert = connection.prepareStatement(INSERT);
 
             insert.setString(1, profile.getUuid().toString());
-            insert.setInt(2, profile.getCoins());
-            insert.setInt(3, profile.getMined());
-            insert.setInt(4, profile.getPvpkills());
-            insert.setInt(5, profile.getPvekills());
-            insert.setInt(6, profile.getOnlinetime());
-            insert.setString(7, profile.getUuid().toString());
+            insert.setString(2, profile.getName());
+            insert.setInt(3, profile.getCoins());
+            insert.setInt(4, profile.getMined());
+            insert.setInt(5, profile.getPvpkills());
+            insert.setInt(6, profile.getPvekills());
+            insert.setInt(7, profile.getOnlinetime());
+            insert.setString(8, profile.getUuid().toString());
 
             insert.executeUpdate();
         } catch(Exception ex) {
@@ -200,11 +204,13 @@ public class SQLBackend extends VeracityBackend implements IBackend {
 
            try {
                while (set.next()) {
+                   String name = set.getString("name");
                    int coins = set.getInt("coins");
                    int pvp = set.getInt("pvp");
                    int pve = set.getInt("pve");
                    int online = set.getInt("online");
 
+                   profile.setName(name);
                    profile.setCoins(coins);
                    profile.setPvpkills(pvp);
                    profile.setPvekills(pve);
@@ -243,6 +249,8 @@ public class SQLBackend extends VeracityBackend implements IBackend {
         }
     }
 
+    /*=============================*/
+
     private void openConnection(SQLCredentials credentials) throws SQLException, ClassNotFoundException {
         if (connection != null && !connection.isClosed()) {
             return;
@@ -258,6 +266,4 @@ public class SQLBackend extends VeracityBackend implements IBackend {
             connection = DriverManager.getConnection(url, credentials.getUsername(), credentials.getPassword());
         }
     }
-
-    /*=============================*/
 }

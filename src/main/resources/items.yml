@@ -1,0 +1,144 @@
+coins-message: '&6Coins: &f%AMOUNT%'
+coins-message-other: '&e%PLAYER% &6Coins: &f%AMOUNT%'
+gui:
+  title: '&6&lCoin Shop'
+  empty-slot:
+    enable: true
+    lore:
+      - ''
+      - '&6Coins: &f%AMOUNT%'
+      - ''
+  items:
+    itemone:
+      name: '&6&lBard &7GKIT'
+      material: GOLD_CHESTPLATE
+      lore:
+        - ''
+        - ''
+        - '&6Cost: &f%COST%'
+      slot: 11
+      cost: 30
+      commands:
+        - gkitz bard %PLAYER%
+    itemtwo:
+      name: '&b&lDiamond &7GKIT'
+      material: DIAMOND_CHESTPLATE
+      lore:
+        - ''
+        - ''
+        - '&6Cost: &f%COST%'
+      slot: 12
+      cost: 30
+      commands:
+        - gkitz diamond %PLAYER%
+    itemthree:
+      name: '&5&lArcher &7GKIT'
+      material: LEATHER_CHESTPLATE
+      lore:
+        - ''
+        - ''
+        - '&6Cost: &f%COST%'
+      slot: 13
+      cost: 30
+      commands:
+        - gkitz archer %PLAYER%
+    itemfour:
+      name: '&7&lMiner/Builder &7GKIT'
+      material: IRON_CHESTPLATE
+      lore:
+        - ''
+        - ''
+        - '&6Cost: &f%COST%'
+      slot: 14
+      cost: 30
+      commands:
+        - gkitz miner %PLAYER%
+    itemfive:
+      name: '&8&lGhost &7GKIT'
+      material: CHAINMAIL_CHESTPLATE
+      lore:
+        - ''
+        - ''
+        - '&6Cost: &f%COST%'
+      slot: 15
+      cost: 30
+      commands:
+        - gkitz ghost %PLAYER%
+    item13:
+      name: '&c&lNano &7Crate Key'
+      material: TRIPWIRE_HOOK
+      lore:
+        - ''
+        - ''
+        - '&6Cost: &f%COST%'
+      slot: 19
+      cost: 15
+      commands:
+        - crate key %PLAYER% nano 2
+    itemsix:
+      name: "&4&lN3xqs &7Package"
+      material: ENDER_CHEST
+      lore:
+        - ''
+        - ''
+        - '&6Cost: &f%COST%'
+      slot: 20
+      cost: 40
+      commands:
+        - package give %PLAYER% n3xqs 1
+    item8:
+      name: '&7&lRogue &7GKIT'
+      material: CHAINMAIL_HELMET
+      lore:
+        - ''
+        - ''
+        - '&6Cost: &f%COST%'
+      slot: 21
+      cost: 30
+      commands:
+        - gkitz rogue %PLAYER%
+    item9:
+      name: '&d&lPartner &7Package'
+      material: ENDER_CHEST
+      lore:
+        - ''
+        - ''
+        - '&6Cost: &f%COST%'
+      slot: 22
+      cost: 40
+      commands:
+        - package give %PLAYER% package 5
+    item10:
+      name: '&c&lBrewer &7GKIT'
+      material: BREWING_STAND_ITEM
+      lore:
+        - ''
+        - ''
+        - '&6Cost: &f%COST%'
+      slot: 23
+      cost: 30
+      commands:
+        - gkitz brewer %PLAYER%
+    item11:
+      name: "&4&lAceve &7Package"
+      material: ENDER_CHEST
+      lore:
+        - ''
+        - '&7[TIP] THIS IS AN EXAMPLE LORE!'
+        - ''
+        - '&6Cost: &f%COST%'
+      slot: 24
+      cost: 40
+      commands:
+        - package give %PLAYER% aceve 1
+    item12:
+      name: '&6&lSeasonal &7Crate Key'
+      material: TRIPWIRE_HOOK
+      lore:
+        - ''
+        - '&6Cost: &f%COST%'
+        - ''
+      slot: 25
+      cost: 25
+      commands:
+        - crate key %PLAYER% Seasonal 1

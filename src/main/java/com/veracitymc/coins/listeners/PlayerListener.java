@@ -15,6 +15,9 @@ public class PlayerListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         VeracityProfile profile = VeracityProfile.getByPlayer(player);
+
+        profile.setName(player.getName());
+        profile.save();
     }
 
     @EventHandler(priority = EventPriority.HIGH)
@@ -32,5 +35,7 @@ public class PlayerListener implements Listener {
 
         profile.save();
         VeracityProfile.getProfiles().remove(profile.getUuid().toString());
+
+        player.closeInventory();
     }
 }

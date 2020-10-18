@@ -12,6 +12,7 @@ import com.veracitymc.coins.backend.backends.SQLBackend;
 import com.veracitymc.coins.backend.creds.MongoCredentials;
 import com.veracitymc.coins.backend.creds.RedisCredentials;
 import com.veracitymc.coins.backend.creds.SQLCredentials;
+import com.veracitymc.coins.backend.files.ItemFile;
 import com.veracitymc.coins.commands.CoinsCommand;
 import com.veracitymc.coins.game.inventory.CoinsGUI;
 import com.veracitymc.coins.game.player.VeracityProfile;
@@ -35,6 +36,7 @@ public final class Coins extends JavaPlugin {
     private VeracityBackend backend;
     private ListenerManager listenerManager;
     private CoinsGUI coinsGUI;
+    private ItemFile itemFile;
 
     @Override
     public void onEnable() {
@@ -96,11 +98,18 @@ public final class Coins extends JavaPlugin {
 
         coinsGUI = new CoinsGUI();
         coinsGUI.loadInventorys();
+
+        itemFile = new ItemFile();
+        itemFile.init();
     }
 
     @Override
     public void onDisable() {
+        if (backend != null && backend.isLoaded()) {
+            VeracityProfile.getProfiles().values().forEach(backend::saveProfileSync);
 
+            backend.close();
+        }
     }
 
     public void registerCommands(PaperCommandManager commandManager) {

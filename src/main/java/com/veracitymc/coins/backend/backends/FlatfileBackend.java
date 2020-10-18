@@ -45,6 +45,7 @@ public class FlatfileBackend extends VeracityBackend {
         File d = new File(Coins.getInstance().getDataFolder() + File.separator + "profile.yml");
         YamlConfiguration data = YamlConfiguration.loadConfiguration(d);
 
+        data.set("profiles." + profile.getUuid().toString() + ".name", profile.getName());
         data.set("profiles." + profile.getUuid().toString() + ".coins", profile.getCoins());
         data.set("profiles." + profile.getUuid().toString() + ".mined", profile.getMined());
         data.set("profiles." + profile.getUuid().toString() + ".pvp", profile.getPvpkills());
@@ -71,6 +72,7 @@ public class FlatfileBackend extends VeracityBackend {
         if (data.contains("profiles")) {
             for (String s : data.getConfigurationSection("profiles").getKeys(false)) {
                 if (profile.getUuid().equals(UUID.fromString(s))) {
+                    profile.setName(data.getString("profiles." + s + ".name"));
                     profile.setCoins(data.getInt("profiles." + s + ".coins"));
                     profile.setCoins(data.getInt("profiles." + s + ".mined"));
                     profile.setCoins(data.getInt("profiles." + s + ".pvp"));
@@ -89,12 +91,14 @@ public class FlatfileBackend extends VeracityBackend {
         if (data.contains("profiles")) {
             for (String s : data.getConfigurationSection("profiles").getKeys(false)) {
                 UUID uuid = UUID.fromString(s);
+                String name = data.getString("profiles." + s + ".name");
                 int coins = data.getInt("profiles." + s + ".coins");
                 int mined = data.getInt("profiles." + s + ".mined");
                 int pvp = data.getInt("profiles." + s + ".pvp");
                 int pve = data.getInt("profiles." + s + ".pve");
                 int online = data.getInt("profiles." + s + ".online");
                 VeracityProfile profile = new VeracityProfile(uuid);
+                profile.setName(name);
                 profile.setCoins(coins);
                 profile.setMined(mined);
                 profile.setPvpkills(pvp);

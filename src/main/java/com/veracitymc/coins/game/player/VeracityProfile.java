@@ -17,6 +17,7 @@ public class VeracityProfile {
     @Getter private static final Map<String, VeracityProfile> profiles = new HashMap<>();
 
     @Getter private final UUID uuid;
+    @Getter @Setter private String name;
     @Getter @Setter private int coins, mined, pvpkills, pvekills, onlinetime;
 
     public VeracityProfile(UUID uuid, boolean cache) {
@@ -81,6 +82,8 @@ public class VeracityProfile {
     }
 
     public void load(Document doc) {
+        if (doc.get("name") != null)
+            this.setName(doc.getString("name"));
         if (doc.get("coins") != null)
             this.setCoins(doc.getInteger("coins"));
         if (doc.get("mined") != null)
@@ -97,6 +100,7 @@ public class VeracityProfile {
         Document doc = new Document();
 
         doc.append("uuid", this.getUuid().toString());
+        doc.append("name", this.getName());
         doc.append("coins", this.getCoins());
         doc.append("mined", this.getMined());
         doc.append("pvp", this.getPvpkills());
