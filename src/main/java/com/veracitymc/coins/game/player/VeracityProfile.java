@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.bson.Document;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
@@ -52,29 +53,37 @@ public class VeracityProfile {
     public void addMined() {
         mined++;
 
-        if (mined % ConfigValues.MINING_TIMES == 0)
+        if (mined % ConfigValues.MINING_TIMES == 0) {
             addCoins(ConfigValues.MINING_COINS);
+            getPlayer().sendMessage(ChatColor.GOLD + "You have earned " + ChatColor.RED + String.valueOf(ConfigValues.MINING_COINS) + ChatColor.GOLD + " coins");
+        }
     }
 
     public void addPvPKills() {
         pvpkills++;
 
-        if (pvpkills % ConfigValues.PVP_KILLS == 0)
+        if (pvpkills % ConfigValues.PVP_KILLS == 0) {
             addCoins(ConfigValues.PVP_KILLS_COINS);
+            getPlayer().sendMessage(ChatColor.GOLD + "You have earned " + ChatColor.RED + String.valueOf(ConfigValues.PVP_KILLS_COINS) + ChatColor.GOLD + " coins");
+        }
     }
 
     public void addPvEKills() {
         pvekills++;
 
-        if (pvekills % ConfigValues.PVE_KILLS == 0)
+        if (pvekills % ConfigValues.PVE_KILLS == 0) {
             addCoins(ConfigValues.PVE_KILLS_COINS);
+            getPlayer().sendMessage(ChatColor.GOLD + "You have earned " + ChatColor.RED + String.valueOf(ConfigValues.PVE_KILLS_COINS) + ChatColor.GOLD + " coins");
+        }
     }
 
     public void increaseOnlineTime() {
         onlinetime++;
 
-        if (onlinetime % (ConfigValues.ONLINE_TIME * 60) == 0)
+        if (onlinetime % (ConfigValues.ONLINE_TIME * 60) == 0) {
             addCoins(ConfigValues.ONLINE_TIME_COINS);
+            getPlayer().sendMessage(ChatColor.GOLD + "You have earned " + ChatColor.RED + String.valueOf(ConfigValues.ONLINE_TIME_COINS) + ChatColor.GOLD + " coins");
+        }
     }
 
     public void save() {

@@ -59,21 +59,19 @@ public class CommandUtils {
                 between_high = max + 1;
 
         List<String> message = new ArrayList<>();
-        int i = 0;
 
         while (between_low < between_high) {
 
 
-            message.add("&6" + i+1 + ". " + sorted.get(i).getKey() + ": " + "&c" +sorted.get(i).getValue());
+            message.add("&e" + Math.addExact(between_low, 1) + ". &6" + sorted.get(between_low).getKey() + ": " + "&c" +sorted.get(between_low).getValue());
 
-            i++;
             between_low++;
         }
 
+        sender.sendMessage(ChatColor.GOLD + "Viewing page " + ChatColor.LIGHT_PURPLE + pagenumber + ChatColor.GOLD + " out of " + ChatColor.LIGHT_PURPLE + maxPage);
         for (String string : message) {
             sender.sendMessage(C.color(string));
         }
-        sender.sendMessage(ChatColor.GOLD + "Viewing page " + ChatColor.LIGHT_PURPLE + pagenumber + ChatColor.GOLD + " out of " + ChatColor.LIGHT_PURPLE + maxPage);
 
     }
 }
