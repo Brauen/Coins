@@ -8,6 +8,7 @@ import com.veracitymc.coins.api.chat.C;
 import com.veracitymc.coins.game.player.VeracityProfile;
 import com.veracitymc.coins.game.player.utils.PlayerUtil;
 import com.veracitymc.coins.game.player.utils.UUIDPair;
+import com.veracitymc.coins.utils.CommandUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -43,6 +44,12 @@ public class CoinsCommand extends BaseCommand {
     @Subcommand("shop")
     public void onShop(Player player) {
         Coins.getInstance().getCoinsGUI().openMainInventory(player);
+    }
+
+    @Subcommand("leaderboard|top")
+    @Syntax("[page]")
+    public void onLeaderboard(CommandSender player, @Default("1") Integer page) {
+        CommandUtils.listLeaderboard(player, page);
     }
 
     @Syntax("<player> <amount>")

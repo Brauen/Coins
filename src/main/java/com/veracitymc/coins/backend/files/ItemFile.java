@@ -15,6 +15,7 @@ public class ItemFile extends ConfigFile {
     @Getter private String title;
     @Getter private boolean emptySlot;
     @Getter private String COINS_MESSAGE, COINS_MESSAGE_OTHER;
+    @Getter private int size;
 
     public ItemFile() {
         super("items.yml");
@@ -32,6 +33,7 @@ public class ItemFile extends ConfigFile {
         title = config.getString("gui.title");
         emptySlot = config.getBoolean("gui.empty-slot.enable");
         emptyLore = config.getStringList("gui.empty-slot.lore");
+        size = config.getInt("gui.size");
 
         for (String item : config.getConfigurationSection("gui.items").getKeys(false)) {
             int cost = config.getInt("gui.items." + item + ".cost");

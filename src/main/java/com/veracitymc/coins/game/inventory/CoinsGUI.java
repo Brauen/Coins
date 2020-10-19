@@ -33,7 +33,7 @@ public class CoinsGUI {
 
         if (Coins.getInstance().getItemFile().isEmptySlot()) {
 
-            for (int i = 0; i < 36; i++) {
+            for (int i = 0; i < Coins.getInstance().getItemFile().getSize(); i++) {
                 if (toOpen.getItem(i) == null) {
                     toOpen.setItem(i, new ItemBuilder(Material.STAINED_GLASS_PANE).durability(7)
                             .name(" ")
@@ -47,7 +47,7 @@ public class CoinsGUI {
     }
 
     private Inventory loadMenu() {
-        Inventory inv = Bukkit.createInventory(null, 36, C.color(Coins.getInstance().getItemFile().getTitle()));
+        Inventory inv = Bukkit.createInventory(null, Coins.getInstance().getItemFile().getSize(), C.color(Coins.getInstance().getItemFile().getTitle()));
 
         for (CoinsItem item : Coins.getInstance().getItemFile().getItems().values()) {
             inv.setItem(item.getSlot(), item.getItemBuilder().get());

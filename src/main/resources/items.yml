@@ -2,6 +2,7 @@ coins-message: '&6Coins: &f%AMOUNT%'
 coins-message-other: '&e%PLAYER% &6Coins: &f%AMOUNT%'
 gui:
   title: '&6&lCoin Shop'
+  size: 45
   empty-slot:
     enable: true
     lore:

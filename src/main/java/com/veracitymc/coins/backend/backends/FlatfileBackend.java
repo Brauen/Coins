@@ -104,7 +104,9 @@ public class FlatfileBackend extends VeracityBackend {
                 profile.setPvpkills(pvp);
                 profile.setPvekills(pve);
                 profile.setOnlinetime(online);
-                VeracityProfile.getProfiles().put(profile.getUuid().toString(), profile);
+
+                if (!VeracityProfile.getProfiles().containsKey(profile.getUuid().toString()))
+                    VeracityProfile.getProfiles().put(profile.getUuid().toString(), profile);
             }
         }
     }
@@ -124,4 +126,6 @@ public class FlatfileBackend extends VeracityBackend {
             e.printStackTrace();
         }
     }
+
+
 }
