@@ -74,10 +74,10 @@ public class FlatfileBackend extends VeracityBackend {
                 if (profile.getUuid().equals(UUID.fromString(s))) {
                     profile.setName(data.getString("profiles." + s + ".name"));
                     profile.setCoins(data.getInt("profiles." + s + ".coins"));
-                    profile.setCoins(data.getInt("profiles." + s + ".mined"));
-                    profile.setCoins(data.getInt("profiles." + s + ".pvp"));
-                    profile.setCoins(data.getInt("profiles." + s + ".pve"));
-                    profile.setCoins(data.getInt("profiles." + s + ".online"));
+                    profile.setMined(data.getInt("profiles." + s + ".mined"));
+                    profile.setPvpkills(data.getInt("profiles." + s + ".pvp"));
+                    profile.setPvekills(data.getInt("profiles." + s + ".pve"));
+                    profile.setOnlinetime(data.getInt("profiles." + s + ".online"));
                 } else continue;
             }
         }

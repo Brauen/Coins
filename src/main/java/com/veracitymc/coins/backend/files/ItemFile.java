@@ -11,6 +11,7 @@ import java.util.*;
 public class ItemFile extends ConfigFile {
 
     @Getter private Map<Integer, CoinsItem> items = new HashMap<>();
+    @Getter private List<String> emptyLore;
     @Getter private String title;
     @Getter private boolean emptySlot;
     @Getter private String COINS_MESSAGE, COINS_MESSAGE_OTHER;
@@ -30,18 +31,18 @@ public class ItemFile extends ConfigFile {
         COINS_MESSAGE_OTHER = config.getString("coins-message-other");
         title = config.getString("gui.title");
         emptySlot = config.getBoolean("gui.empty-slot.enable");
-
-        if (emptySlot) {
-            CoinsItem empty = new CoinsItem(new ItemBuilder(Material.STAINED_GLASS_PANE).name("").lore(C.color(config.getStringList("gui.empty-slot.lore"))), 0, 0, Arrays.asList(""));
-            items.put(0, empty);
-        }
+        emptyLore = config.getStringList("gui.empty-slot.lore");
 
         for (String item : config.getConfigurationSection("gui.items").getKeys(false)) {
             int cost = config.getInt("gui.items." + item + ".cost");
             int slot = config.getInt("gui.items." + item + ".slot");
+            List<String> lores = new ArrayList<>();
+            for (String string : config.getStringList("gui.items." + item + ".lore")) {
+                lores.add(string.replace("%COST%", String.valueOf(cost)));
+            }
             ItemBuilder builder = new ItemBuilder(Material.matchMaterial(config.getString("gui.items." + item + ".material")))
                     .name(C.color(config.getString("gui.items." + item + ".name")))
-                    .lore(C.color(config.getString("gui.items." + item + ".lore").replace("%COST%", String.valueOf(cost))));
+                    .lore(C.color(lores));
             List<String> commands = config.getStringList("gui.items." + item + ".commands");
 
             CoinsItem cItem = new CoinsItem(builder, slot, cost, commands);

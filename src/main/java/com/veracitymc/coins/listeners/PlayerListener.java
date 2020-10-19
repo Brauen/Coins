@@ -17,6 +17,7 @@ public class PlayerListener implements Listener {
         VeracityProfile profile = VeracityProfile.getByPlayer(player);
 
         profile.setName(player.getName());
+
         profile.save();
     }
 

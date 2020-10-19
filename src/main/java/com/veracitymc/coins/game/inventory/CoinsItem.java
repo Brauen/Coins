@@ -16,7 +16,7 @@ public class CoinsItem {
         this.itemBuilder = builder;
         this.slot = slot;
         this.cost = cost;
-        this.command = command;
+        this.command = commands;
     }
 
 }

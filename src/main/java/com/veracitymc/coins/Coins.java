@@ -96,11 +96,11 @@ public final class Coins extends JavaPlugin {
         listenerManager = new ListenerManager();
         listenerManager.registerListeners();
 
-        coinsGUI = new CoinsGUI();
-        coinsGUI.loadInventorys();
-
         itemFile = new ItemFile();
         itemFile.init();
+
+        coinsGUI = new CoinsGUI();
+        coinsGUI.loadInventorys();
     }
 
     @Override

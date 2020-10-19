@@ -34,8 +34,15 @@ public class GUIListener implements Listener {
 
         profile.removeCoins(item.getCost());
         player.sendMessage(ChatColor.GREEN + "Purchase successful!");
+
+        player.closeInventory();
+
+        if (item.getCommand() == null || item.getCommand().size() == 0) return;
+
         for (String command : item.getCommand()) {
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command.replace("%PLAYER%", player.getName()));
+            System.out.println(command.replace("%PLAYER%", player.getName()));
+            System.out.println(Bukkit.getServer().getConsoleSender());
+            Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), command.replace("%PLAYER%", player.getName()));
         }
     }
 }
